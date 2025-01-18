@@ -1,6 +1,6 @@
 {
   "name": "streamingutilities",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Streaming Utility",
   "main": "main.js",
   "author": "MNIKevin202",
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "electron .",
+    "clean": "rimraf dist build node_modules",
     "package": "electron-packager . BRChallengePicker --platform=win32 --arch=x64 --out=dist --overwrite",
     "build": "electron-builder",
     "release": "electron-builder --publish always"
@@ -23,7 +24,8 @@
     "@electron-forge/maker-squirrel": "^7.6.0",
     "electron": "^34.0.0",
     "electron-builder": "^24.6.0",
-    "electron-packager": "^17.1.1"
+    "electron-packager": "^17.1.1",
+    "rimraf": "^5.0.0"
   },
   "build": {
     "appId": "com.buttonpicker.streamingutilities",
@@ -31,6 +33,45 @@
     "directories": {
       "output": "build"
     },
+    "files": [
+      "**/*",
+      "!node_modules/*/{README.md,README,readme.md,readme}",
+      "!node_modules/.bin",
+      "!**/*.md",
+      "!**/*.ts",
+      "!**/*.map",
+      "!dist",
+      "!build",
+      "!LICENSE",
+      "!*.log",
+      "!config"
+    ],
+    "extraResources": [
+      {
+        "from": "BRCP/",
+        "to": "BRCP"
+      },
+      {
+        "from": "buttonPicker/",
+        "to": "buttonPicker"
+      },
+      {
+        "from": "coinflip/",
+        "to": "coinflip"
+      },
+      {
+        "from": "FNFSPicker/",
+        "to": "FNFSPicker"
+      },
+      {
+        "from": "wheelSpin/",
+        "to": "wheelSpin"
+      },
+      {
+        "from": "assets/",
+        "to": "assets"
+      }
+    ],
     "win": {
       "target": "nsis",
       "icon": "assets/icon.ico",

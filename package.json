@@ -1,6 +1,6 @@
 {
   "name": "streamingutilities",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Streaming Utility",
   "main": "main.js",
   "author": "MNIKevin202",
@@ -15,16 +15,16 @@
     "build": "electron-builder",
     "release": "electron-builder --publish always"
   },
-"dependencies": {
-  "dotenv": "^16.4.7",
-  "electron-updater": "^5.3.0"
-},
-"devDependencies": {
-  "@electron-forge/maker-squirrel": "^7.6.0",
-  "electron": "^34.0.0",
-  "electron-builder": "^24.6.0",
-  "electron-packager": "^17.1.1"
-},
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "electron-updater": "^5.3.0"
+  },
+  "devDependencies": {
+    "@electron-forge/maker-squirrel": "^7.6.0",
+    "electron": "^34.0.0",
+    "electron-builder": "^24.6.0",
+    "electron-packager": "^17.1.1"
+  },
   "build": {
     "appId": "com.buttonpicker.streamingutilities",
     "productName": "ButtonPicker",
@@ -34,11 +34,14 @@
     "win": {
       "target": "nsis",
       "icon": "assets/icon.ico",
-      "publish": {
-        "provider": "github",
-        "owner": "MNIKevin202",
-        "repo": "streamingutilities"
-      }
+      "publish": [
+        {
+          "provider": "github",
+          "owner": "MNIKevin202",
+          "repo": "streamingutilities",
+          "releaseType": "release"
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,

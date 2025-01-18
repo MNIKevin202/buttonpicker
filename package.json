@@ -1,13 +1,13 @@
 {
-  "name": "streamingutilities",
-  "version": "1.0.7",
+  "name": "buttonpicker",
+  "version": "1.0.0",
   "description": "Streaming Utility",
   "main": "main.js",
   "author": "MNIKevin202",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MNIKevin202/streamingutilities"
+    "url": "https://github.com/MNIKevin202/buttonpicker.git"
   },
   "scripts": {
     "start": "electron .",
@@ -38,16 +38,37 @@
       "FNFSPicker/**/*",
       "main.js",
       "index.html",
-      "package.json"
+      "package.json",
+      "preferences.html",
+      "preferences.js",
+      "script.js",
+      "style.css",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/",
+        "to": "assets/",
+        "filter": ["**/*"]
+      }
     ],
     "win": {
-      "target": "nsis",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
       "icon": "assets/icon.ico",
       "publish": [
         {
           "provider": "github",
           "owner": "MNIKevin202",
-          "repo": "streamingutilities"
+          "repo": "streamingutilities",
+          "releaseType": "release"
         }
       ]
     },
@@ -57,7 +78,15 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "BR Challenge Picker"
-    }
+      "shortcutName": "Button Picker"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MNIKevin202",
+        "repo": "buttonpicker",
+        "releaseType": "release"
+      }
+    ]
   }
 }

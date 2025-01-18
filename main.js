@@ -117,7 +117,7 @@ function openPreferencesWindow() {
         }
     });
 
-    prefWindow.loadFile('preferences.html');
+    prefWindow.loadFile('preferences/preferences.html');
 
     prefWindow.on('close', () => {
         mainWindow.webContents.send('preferences-updated');

@@ -1,0 +1,42 @@
+{
+  "themes": [
+    "NA-East",
+    "NA-Central",
+    "NA-West",
+    "EU",
+    "OCE",
+    "Brazil",
+    "Asia",
+    "Middle East"
+  ],
+  "rounds": [
+    "Builds",
+    "Zero Builds",
+    "Reload",
+    "Reload Ranked"
+  ],
+  "modifiers": [
+    "Duo",
+    "Trio",
+    "Trio Fill",
+    "Squad",
+    "Squad Fill"
+  ],
+  "prizes": [
+    "200 VBUCKS",
+    "500 VBUCKS",
+    "750 VBUCKS",
+    "1000 VBUCKS",
+    "1500 VBUCKS",
+    "2000 VBUCKS",
+    "1 Month Spotify Premium",
+    "$3 PayPal",
+    "$5 PayPal",
+    "$10 PayPal",
+    "Discord Nitro Basic - 1 Month",
+    "VIP - 1 Week",
+    "VIP - 1 Month",
+    "Custom Sound Alert - 1 Week",
+    "Custom Sound Alert - 1 Month"
+  ]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel Spin</title>
+    <link rel="stylesheet" href="wheelspin.css">
+    <!-- Load tmi.js before custom scripts -->
+    <script src="https://unpkg.com/tmi.js@1.8.5/dist/tmi.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Wheel Spin</h1>
+
+    <!-- Left Sidebar -->
+    <div id="settingsSidebar" class="sidebar left">
+        <h3>Settings</h3>
+        <!-- Middle Image Upload -->
+        <div class="setting-item">
+            <label for="middleImageUpload">Middle Image:</label>
+            <input type="file" id="middleImageUpload" accept="image/*" class="file-input">
+        </div>
+        <!-- Image Size Slider -->
+        <div class="setting-item">
+            <label for="imageSizeSlider">Image Size: <span id="imageSizeValue">100</span>%</label>
+            <input type="range" id="imageSizeSlider" min="10" max="200" value="100">
+        </div>
+        <!-- Duration Slider -->
+        <div class="setting-item">
+            <label for="durationSlider">Duration: <span id="durationValue">5</span> seconds</label>
+            <input type="range" id="durationSlider" min="1" max="60" value="5">
+        </div>
+        <!-- Termination Wheel Toggle -->
+        <div class="setting-item centered">
+            <label for="terminationToggle">Termination Wheel:</label>
+            <label class="switch">
+                <input type="checkbox" id="terminationToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <!-- Font Settings -->
+        <div class="setting-item">
+            <label for="fontSelect">Font:</label>
+            <select id="fontSelect">
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+        </div>
+        <div class="setting-item">
+            <label for="fontSize">Font Size:</label>
+            <input type="number" id="fontSize" value="16">
+        </div>
+        <div class="setting-item centered">
+            <label for="fontBold">Bold:</label>
+            <label class="switch">
+                <input type="checkbox" id="fontBold">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <!-- Wheel Size Slider -->
+        <div class="setting-item">
+            <label for="wheelSizeSlider">Wheel Size: <span id="wheelSizeValue">200</span></label>
+            <input type="range" id="wheelSizeSlider" min="100" max="300" value="200">
+        </div>
+        <!-- Inner Circle Size Slider -->
+        <div class="setting-item">
+            <label for="innerCircleSizeSlider">Inner Circle Size: <span id="innerCircleSizeValue">125</span></label>
+            <input type="range" id="innerCircleSizeSlider" min="50" max="200" value="125">
+        </div>
+        <!-- Spin Button -->
+        <div class="button-group">
+            <button id="spinButton" class="btn-primary">Spin Wheel</button>
+            <button id="shuffleButton" class="btn-secondary">Shuffle</button>
+        </div>
+    </div>
+
+    <!-- Right Sidebar for Participants -->
+    <div id="participantsSidebar" class="sidebar right">
+        <p id="loggedInUser">Not logged in</p>
+
+        <h3>Participants</h3>
+        <div class="setting-item">
+            <textarea id="nameInput" placeholder="Enter each participant's name on a new line..."></textarea>
+        </div>
+        <button id="generateWheel" class="btn-primary">Generate Wheel</button>
+
+        <!-- Twitch Integration Toggle -->
+        <div class="setting-item centered">
+            <label for="twitchToggle">Twitch Integration:</label>
+            <label class="switch">
+                <input type="checkbox" id="twitchToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <!-- Twitch Integration Fields -->
+        <div id="twitchFields" style="display: none;">
+            <div class="setting-item">
+                <label for="twitchChannel">Twitch Channel:</label>
+                <input type="text" id="twitchChannel" placeholder="Enter Twitch Channel">
+            </div>
+            <div class="setting-item">
+                <label for="twitchCommand">Command:</label>
+                <input type="text" id="twitchCommand" value="!wheel">
+            </div>
+            <button id="twitchGoButton" class="btn-primary">Authorize and Go</button>
+            <button id="twitchLeaveButton" class="btn-secondary">Leave Channel</button>
+        </div>
+    </div>
+
+    <!-- Wheel Display -->
+    <div class="wheel-container">
+        <canvas id="wheelCanvas" width="600" height="600"></canvas>
+    </div>
+
+    <!-- Winner Modal -->
+    <div id="winnerModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="winnerText">Winner: [Name]</h2>
+            <button id="removeWinnerButton" class="btn-danger">Remove From Wheel</button>
+            <button id="keepWinnerButton" class="btn-secondary">Keep on Wheel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Load the wheelspin logic -->
+<script>
+document.getElementById('twitchGoButton').addEventListener('click', () => {
+    window.location.href = '/auth/twitch';
+});
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/tmi.min.js"></script>
+<script src="wheelspin.js"></script>
+
+</body>
+</html>

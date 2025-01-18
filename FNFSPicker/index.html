@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Show Picker</title>
+    <link rel="stylesheet" href="fashionshowpicker.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar-left">
+            <h2>Fashion Show Picker</h2>
+            <button class="sidebar-btn" id="themePickerBtn">🎨 Theme Picker</button>
+            <button class="sidebar-btn" id="roundPickerBtn">🔄 Round Picker</button>
+            <button class="sidebar-btn" id="modifierPickerBtn">⚡ Modifier Picker</button>
+            <textarea id="customInput" placeholder="Enter custom entries, one per line..."></textarea>
+            <button id="addCustomEntries" class="btn-secondary">➕ Add Entries</button>
+            <button id="shuffleButton" class="btn-shuffle">🔀 Shuffle</button>
+            <button id="startButton" class="btn-primary">🎯 Start</button>
+            <div class="settings">
+                <label for="durationDropdown">Duration (seconds):</label>
+                <select id="durationDropdown">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Sliding Menu -->
+        <div id="slidingMenu" class="sliding-menu hidden">
+            <div class="menu-header">
+                <h3 id="menuTitle">Options</h3>
+                <button id="closeMenu" class="close-btn">✖</button>
+            </div>
+            <div id="menuOptions" class="options-grid"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Randomizer!</h1>
+            <div id="buttonContainer" class="button-grid"></div>
+        </div>
+
+        <!-- Right Sidebar -->
+<!-- Right Sidebar -->
+<div class="sidebar-right">
+    <h3>Fashion Show Details</h3>
+    <p id="selectedTheme">Theme: None</p>
+    <p id="selectedRound">Round: None</p>
+    <p id="selectedModifier">Modifier: None</p>
+    
+    <!-- New Reset Button -->
+    <button id="resetButton" class="btn-reset">🔄 Reset</button>
+</div>
+
+    </div>
+
+    <script src="fashionshowpicker.js"></script>
+</body>
+</html>

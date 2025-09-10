@@ -1,21 +1,19 @@
-const { ipcRenderer } = require('electron');
-
 let themes = [];
 let rounds = [];
 let modifiers = [];
 
-// Load Picker Data via IPC (Better than fetch for local files)
+// Load Picker Data via API
 function loadPickerData() {
-    ipcRenderer.send('get-picker-data', 'FNFSPicker');
+    fetch('/api/picker-data/FNFSPicker')
+        .then(response => response.json())
+        .then(data => {
+            themes = data.themes || [];
+            rounds = data.rounds || [];
+            modifiers = data.modifiers || [];
+            updateUI();
+        })
+        .catch(error => console.error('Error loading picker data:', error));
 }
-
-// Receive Data and Update UI
-ipcRenderer.on('update-picker-data', (event, data) => {
-    themes = data.themes || [];
-    rounds = data.rounds || [];
-    modifiers = data.modifiers || [];
-    updateUI();
-});
 
 // Refresh UI when data is updated
 function updateUI() {
@@ -162,6 +160,5 @@ document.getElementById("addCustomEntries").onclick = () => {
 };
 
 // Listen for preferences-updated to reload data
-ipcRenderer.on('preferences-updated', () => {
-    loadPickerData();
-});
+// Listen for preferences-updated message (web version - no action needed)
+// Data will be reloaded when the page is refreshed

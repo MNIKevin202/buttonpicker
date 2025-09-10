@@ -1,18 +1,16 @@
-const { ipcRenderer } = require('electron');
-
 let themes = [];
 let rounds = [];
 let modifiers = [];
 let prizes = [];
 
 function loadPickerData() {
-    fetch('pickerData.json')
+    fetch('/api/picker-data/BRCP')
         .then(response => response.json())
         .then(data => {
-            themes = data.themes;
-            rounds = data.rounds;
-            modifiers = data.modifiers;
-            prizes = data.prizes;
+            themes = data.themes || [];
+            rounds = data.rounds || [];
+            modifiers = data.modifiers || [];
+            prizes = data.prizes || [];
             updateUI();
         })
         .catch(error => console.error('Error loading picker data:', error));
@@ -287,7 +285,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Listen for preferences-updated message
-ipcRenderer.on('preferences-updated', () => {
-    loadPickerData();
-});
+// Listen for preferences-updated message (web version - no action needed)
+// Data will be reloaded when the page is refreshed

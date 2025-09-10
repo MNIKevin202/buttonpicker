@@ -1,8 +1,8 @@
 {
   "name": "buttonpicker",
   "version": "1.0.0",
-  "description": "Streaming Utility",
-  "main": "main.js",
+  "description": "Streaming Utility - Web Version",
+  "main": "server.js",
   "author": "MNIKevin202",
   "license": "MIT",
   "repository": {
@@ -10,83 +10,11 @@
     "url": "https://github.com/MNIKevin202/buttonpicker.git"
   },
   "scripts": {
-    "start": "electron .",
-    "package": "electron-packager . BRChallengePicker --platform=win32 --arch=x64 --out=dist --overwrite",
-    "build": "electron-builder",
-    "release": "electron-builder --publish always"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "electron-updater": "^5.3.0"
-  },
-  "devDependencies": {
-    "@electron-forge/maker-squirrel": "^7.6.0",
-    "electron": "^34.0.0",
-    "electron-builder": "^24.6.0",
-    "electron-packager": "^17.1.1"
-  },
-  "build": {
-    "appId": "com.buttonpicker.streamingutilities",
-    "productName": "ButtonPicker",
-    "directories": {
-      "output": "build"
-    },
-    "files": [
-      "BRCP/**/*",
-      "buttonPicker/**/*",
-      "coinflip/**/*",
-      "FNFSPicker/**/*",
-      "main.js",
-      "index.html",
-      "package.json",
-      "preferences.html",
-      "preferences.js",
-      "script.js",
-      "style.css",
-      "assets/**/*"
-    ],
-    "extraResources": [
-      {
-        "from": "assets/",
-        "to": "assets/",
-        "filter": ["**/*"]
-      }
-    ],
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ],
-      "icon": "assets/icon.ico",
-      "publish": [
-        {
-          "provider": "github",
-          "owner": "MNIKevin202",
-          "repo": "streamingutilities",
-          "releaseType": "release"
-        }
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": true,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "Button Picker"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "MNIKevin202",
-        "repo": "buttonpicker",
-        "releaseType": "release"
-      }
-    ]
+    "express": "^4.18.2",
+    "dotenv": "^16.4.7"
   }
 }

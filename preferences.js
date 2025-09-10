@@ -1,5 +1,3 @@
-const { ipcRenderer } = require('electron');
-
 let pickerData = {};
 let activePickerType = '';
 let activePickerCategory = '';
@@ -14,14 +12,15 @@ function toggleDropdown(button) {
 function loadPickerData(pickerType, category) {
     activePickerType = pickerType;
     activePickerCategory = category;
-    ipcRenderer.send('get-picker-data', pickerType);
+    
+    fetch(`/api/picker-data/${pickerType}`)
+        .then(response => response.json())
+        .then(data => {
+            pickerData = data;
+            showSection(category);
+        })
+        .catch(error => console.error('Error loading picker data:', error));
 }
-
-// Receive Data and Populate UI
-ipcRenderer.on('update-picker-data', (event, data) => {
-    pickerData = data;
-    showSection(activePickerCategory);
-});
 
 // Show Editable Section for Selected Category
 function showSection(category) {
@@ -74,13 +73,30 @@ function deleteItem(category, index) {
 
 // Save Changes to JSON
 function saveChanges() {
-    ipcRenderer.send('save-picker-data', { pickerType: activePickerType, data: pickerData });
-    alert('Changes saved!');
+    fetch(`/api/picker-data/${activePickerType}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pickerData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Changes saved!');
+        } else {
+            alert('Error saving changes');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving data:', error);
+        alert('Error saving changes');
+    });
 }
 
 // Close Preferences Window
 function closePreferences() {
-    ipcRenderer.send('close-preferences');
+    window.close();
 }
 
 // Capitalize Helper
